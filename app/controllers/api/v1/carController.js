@@ -25,7 +25,7 @@ module.exports = {
       });
   },
 
-  listDeleted(args) {
+  listArgs(args) {
     return async (req, res) => {
       carService
         .list(args)
@@ -53,6 +53,7 @@ module.exports = {
       .then((car) => {
         res.status(201).json({
           status: "OK",
+          message: `Successfully created new car by ${req.user.username}`,
           data: car,
         });
       })
@@ -65,12 +66,14 @@ module.exports = {
   },
 
   update(req, res) {
+    console.log(req.user);
     req.body.updatedBy = req.user.username;
     carService
       .update(req.params.id, req.body)
       .then(() => {
         res.status(200).json({
           status: "OK",
+          message: `Successfully updated car by ${req.user.username}`,
         });
       })
       .catch((err) => {

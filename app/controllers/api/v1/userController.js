@@ -42,7 +42,7 @@ function createToken(payload) {
     // expiresIn: "10h" // it will be expired after 10 hours
     //expiresIn: "20d" // it will be expired after 20 days
     //expiresIn: 120 // it will be expired after 120ms
-    expiresIn: "50d", // it will be expired after 120s
+    expiresIn: "12h", // it will be expired after 10 hours
   });
 }
 
@@ -126,6 +126,7 @@ module.exports = {
   },
 
   async whoAmI(req, res) {
+    req.user.password = undefined;
     res.status(200).json(req.user);
   },
 
@@ -187,6 +188,14 @@ module.exports = {
   },
 
   update(req, res) {
+    if (req.params.id == "1") {
+      console.log("You cant change superadmin");
+      res.status(422).json({
+        status: "FAIL",
+        message: "You cant change superadmin",
+      });
+      return;
+    }
     req.body.role = "admin";
     userService
       .update(req.params.id, req.body)

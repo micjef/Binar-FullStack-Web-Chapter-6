@@ -4,7 +4,7 @@
     "title": "Car Management API",
     "description": "OpenAPI for Car Management API",
     "version": "1",
-    "termsOfService": "https://instagram.com/yunedaalfajr",
+    "termsOfService": "https://micjef.my.id",
     "contact": {
       "name": "Michael Jeffry Setiawan",
       "email": "michaeljeffrysetiawan@gmail.com",
@@ -420,6 +420,15 @@
                     "type": "string"
                   }
                 }
+              },
+              "examples": {
+                "superadmin": {
+                  "description": "login as superadmin",
+                  "value": {
+                    "email": "superadmin@gmail.com",
+                    "password": "superadmin"
+                  }
+                }
               }
             }
           }
@@ -470,10 +479,27 @@
         ],
         "tags": ["Cars"],
         "summary": "Show only deleted cars",
-        "description": "Show only deleted cars by superadmin only",
+        "description": "Show only deleted cars by superadmin and admin only",
         "responses": {
           "200": {
             "description": "Succes show deleted car"
+          }
+        }
+      }
+    },
+    "/whoami": {
+      "get": {
+        "security": [
+          {
+            "CarAuth": []
+          }
+        ],
+        "tags": ["Users"],
+        "summary": "Show data user who logged in",
+        "description": "Show data user who logged in at the moment",
+        "responses": {
+          "200": {
+            "description": "Succes show data user who logged in"
           }
         }
       }
@@ -566,20 +592,6 @@
           "deletedBy": {
             "type": "string",
             "default": null
-          }
-        }
-      },
-      "ArrayCar": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "integer"
-            },
-            "plate": {
-              "type": "string"
-            }
           }
         }
       }

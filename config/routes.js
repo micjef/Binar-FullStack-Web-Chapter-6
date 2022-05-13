@@ -69,7 +69,7 @@ apiRouter.get(
   "/api/v1/history",
   controllers.api.v1.userController.authorize,
   middewares.checkCredential(["superadmin", "admin"]),
-  controllers.api.v1.carController.listDeleted({
+  controllers.api.v1.carController.listArgs({
     where: { isDeleted: true },
   })
 );
