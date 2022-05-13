@@ -60,7 +60,12 @@
            updatedAt: user.updatedAt,
          });
        })
-       .catch((e) => console.log(e));
+       .catch((err) => {
+         res.status(409).json({
+           status: "Failed",
+           message: err.message,
+         });
+       });
    },
  
    async login(req, res) {

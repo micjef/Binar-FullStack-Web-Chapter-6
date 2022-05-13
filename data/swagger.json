@@ -1,0 +1,625 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Car Management API",
+    "description": "OpenAPI for Car Management API",
+    "version": "1",
+    "termsOfService": "https://micjef.my.id",
+    "contact": {
+      "name": "Michael Jeffry Setiawan",
+      "email": "michaeljeffrysetiawan@gmail.com",
+      "url": "https://micjef.my.id"
+    },
+    "license": {
+      "name": "APACHE 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "tags": [
+    {
+      "name": "Cars",
+      "description": "API for cars in the system"
+    },
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    }
+  ],
+  "servers": [
+    {
+      "description": "Car Management API Server",
+      "url": "http://localhost:8000/{env}",
+      "variables": {
+        "env": {
+          "description": "Server Environment",
+          "default": "api/v1",
+          "enum": ["api/v1", "dev"]
+        }
+      }
+    }
+  ],
+  "externalDocs": {
+    "url": "https://swagger.io/docs/specification/about/",
+    "description": "OpenAPI Guide"
+  },
+  "paths": {
+    "/cars": {
+      "get": {
+        "tags": ["Cars"],
+        "summary": "Get All Cars",
+        "description": "Get all car which is not deleted",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "coba",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "name": {
+                "description": "Contoh query name",
+                "value": "yuneda"
+              },
+              "address": {
+                "description": "Contoh query address",
+                "value": "sidoarjo"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get all cars",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "plate": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "success": {
+                    "description": "Example success get all car",
+                    "value": [
+                      {
+                        "id": 2,
+                        "plate": "VPT-9753",
+                        "manufacture": "BMW",
+                        "model": "M5",
+                        "image": "./images/car04.min.jpg",
+                        "rentPerDay": 900000,
+                        "capacity": 6,
+                        "description": " 6.1L SRT V8 \"Hemi\" engine.",
+                        "transmission": "Manual",
+                        "type": "Hatchback",
+                        "year": "2018",
+                        "options": [
+                          "Alloy Wheels",
+                          "Power Locks",
+                          "A/C: Rear",
+                          "MP3 (Single Disc)",
+                          "Airbag: Driver",
+                          "A/C: Front",
+                          "Tinted Glass",
+                          "Alloy Wheels",
+                          "Alarm"
+                        ],
+                        "specs": [
+                          "6.1L SRT V8 \"Hemi\" engine",
+                          "Multi-info display -inc: driving range, average MPG, current MPG, average speed, outside temp, elapsed time, maintenance & diagnostic messages",
+                          "Front & rear passenger folding assist grips",
+                          "Electronic throttle control system w/intelligence (ETCS-i)",
+                          "Pwr tilt/slide moonroof -inc: 1-touch open/close",
+                          "Acoustic glass windshield"
+                        ],
+                        "availableAt": "2022-03-23T15:49:05.563Z",
+                        "isDeleted": false,
+                        "createdBy": "superadmin",
+                        "updatedBy": "",
+                        "deletedBy": "",
+                        "createdAt": "2022-05-10T17:02:45.225Z",
+                        "updatedAt": "2022-05-10T17:02:45.225Z"
+                      },
+                      {
+                        "id": 3,
+                        "plate": "VPT-9753 ngakak",
+                        "manufacture": "BMW",
+                        "model": "M5",
+                        "image": "./images/car04.min.jpg",
+                        "rentPerDay": 900000,
+                        "capacity": 6,
+                        "description": " 6.1L SRT V8 \"Hemi\" engine.",
+                        "transmission": "Manual",
+                        "type": "Hatchback",
+                        "year": "2018",
+                        "options": [
+                          "Alloy Wheels",
+                          "Power Locks",
+                          "A/C: Rear",
+                          "MP3 (Single Disc)",
+                          "Airbag: Driver",
+                          "A/C: Front",
+                          "Tinted Glass",
+                          "Alloy Wheels",
+                          "Alarm"
+                        ],
+                        "specs": [
+                          "6.1L SRT V8 \"Hemi\" engine",
+                          "Multi-info display -inc: driving range, average MPG, current MPG, average speed, outside temp, elapsed time, maintenance & diagnostic messages",
+                          "Front & rear passenger folding assist grips",
+                          "Electronic throttle control system w/intelligence (ETCS-i)",
+                          "Pwr tilt/slide moonroof -inc: 1-touch open/close",
+                          "Acoustic glass windshield"
+                        ],
+                        "availableAt": "2022-03-23T15:49:05.563Z",
+                        "isDeleted": false,
+                        "createdBy": "admin",
+                        "updatedBy": "",
+                        "deletedBy": "",
+                        "createdAt": "2022-05-11T11:35:39.096Z",
+                        "updatedAt": "2022-05-11T11:35:39.096Z"
+                      },
+                      {
+                        "id": 4,
+                        "plate": "VPT-9753 masak sih",
+                        "manufacture": "BMW",
+                        "model": "M5",
+                        "image": "./images/car04.min.jpg",
+                        "rentPerDay": 900000,
+                        "capacity": 6,
+                        "description": " 6.1L SRT V8 \"Hemi\" engine.",
+                        "transmission": "Manual",
+                        "type": "Hatchback",
+                        "year": "2018",
+                        "options": [
+                          "Alloy Wheels",
+                          "Power Locks",
+                          "A/C: Rear",
+                          "MP3 (Single Disc)",
+                          "Airbag: Driver",
+                          "A/C: Front",
+                          "Tinted Glass",
+                          "Alloy Wheels",
+                          "Alarm"
+                        ],
+                        "specs": [
+                          "6.1L SRT V8 \"Hemi\" engine",
+                          "Multi-info display -inc: driving range, average MPG, current MPG, average speed, outside temp, elapsed time, maintenance & diagnostic messages",
+                          "Front & rear passenger folding assist grips",
+                          "Electronic throttle control system w/intelligence (ETCS-i)",
+                          "Pwr tilt/slide moonroof -inc: 1-touch open/close",
+                          "Acoustic glass windshield"
+                        ],
+                        "availableAt": "2022-03-23T15:49:05.563Z",
+                        "isDeleted": false,
+                        "createdBy": "superadmin",
+                        "updatedBy": "",
+                        "deletedBy": "",
+                        "createdAt": "2022-05-12T03:04:24.582Z",
+                        "updatedAt": "2022-05-12T03:04:24.582Z"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Cars"],
+        "summary": "Create New Car",
+        "description": "Create one car by admin or superadmin only",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "description": "get token from user who logged in",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "plate": {
+                    "type": "string"
+                  },
+                  "manufacture": {
+                    "type": "string"
+                  },
+                  "model": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  },
+                  "rentPerDay": {
+                    "type": "integer"
+                  },
+                  "capacity": {
+                    "type": "integer",
+                    "default": 2
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "transmission": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "year": {
+                    "type": "string"
+                  },
+                  "options": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "specs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "availableAt": {
+                    "type": "string"
+                  },
+                  "isDeleted": {
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "createdBy": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "updatedBy": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "deletedBy": {
+                    "type": "string",
+                    "default": ""
+                  }
+                }
+              },
+              "examples": {
+                "dummy_input": {
+                  "description": "Example Create New Car",
+                  "value": {
+                    "plate": "VPT-9753",
+                    "manufacture": "BMW",
+                    "model": "M5",
+                    "image": "./images/car04.min.jpg",
+                    "rentPerDay": 900000,
+                    "capacity": 6,
+                    "description": " 6.1L SRT V8 \"Hemi\" engine.",
+                    "transmission": "Manual",
+                    "type": "Hatchback",
+                    "year": "2018",
+                    "options": [
+                      "Alloy Wheels",
+                      "Power Locks",
+                      "A/C: Rear",
+                      "MP3 (Single Disc)",
+                      "Airbag: Driver",
+                      "A/C: Front",
+                      "Tinted Glass",
+                      "Alloy Wheels",
+                      "Alarm"
+                    ],
+                    "specs": [
+                      "6.1L SRT V8 \"Hemi\" engine",
+                      "Multi-info display -inc: driving range, average MPG, current MPG, average speed, outside temp, elapsed time, maintenance & diagnostic messages",
+                      "Front & rear passenger folding assist grips",
+                      "Electronic throttle control system w/intelligence (ETCS-i)",
+                      "Pwr tilt/slide moonroof -inc: 1-touch open/close",
+                      "Acoustic glass windshield"
+                    ],
+                    "availableAt": "2022-03-23T15:49:05.563Z"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Succes create new car",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cars/{id}": {
+      "get": {
+        "tags": ["Cars"],
+        "summary": "Get Spesific Car",
+        "description": "Update car by admin or superadmin only",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Car id for get spesific car",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "tags": ["Cars"],
+        "summary": "Update Existing Car",
+        "description": "Update car by admin or superadmin only",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Car id for update spesific car",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "plate": {
+                    "type": "string"
+                  },
+                  "manufacture": {
+                    "type": "string"
+                  },
+                  "model": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  },
+                  "rentPerDay": {
+                    "type": "integer"
+                  },
+                  "capacity": {
+                    "type": "integer",
+                    "default": 2
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "transmission": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "year": {
+                    "type": "string"
+                  },
+                  "options": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "specs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "availableAt": {
+                    "type": "string"
+                  },
+                  "isDeleted": {
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "createdBy": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "updatedBy": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "deletedBy": {
+                    "type": "string",
+                    "default": ""
+                  }
+                }
+              },
+              "examples": {
+                "dummy_input": {
+                  "description": "Example Create New Car",
+                  "value": {
+                    "plate": "VPT-9753",
+                    "manufacture": "BMW",
+                    "model": "M5",
+                    "image": "./images/car04.min.jpg",
+                    "rentPerDay": 900000,
+                    "capacity": 6,
+                    "description": " 6.1L SRT V8 \"Hemi\" engine.",
+                    "transmission": "Manual",
+                    "type": "Hatchback",
+                    "year": "2018",
+                    "options": [
+                      "Alloy Wheels",
+                      "Power Locks",
+                      "A/C: Rear",
+                      "MP3 (Single Disc)",
+                      "Airbag: Driver",
+                      "A/C: Front",
+                      "Tinted Glass",
+                      "Alloy Wheels",
+                      "Alarm"
+                    ],
+                    "specs": [
+                      "6.1L SRT V8 \"Hemi\" engine",
+                      "Multi-info display -inc: driving range, average MPG, current MPG, average speed, outside temp, elapsed time, maintenance & diagnostic messages",
+                      "Front & rear passenger folding assist grips",
+                      "Electronic throttle control system w/intelligence (ETCS-i)",
+                      "Pwr tilt/slide moonroof -inc: 1-touch open/close",
+                      "Acoustic glass windshield"
+                    ],
+                    "availableAt": "2022-03-23T15:49:05.563Z"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {}
+      },
+      "delete": {
+        "tags": ["Cars"],
+        "summary": "Delete Existing Car",
+        "description": "make isDeleted atribute true, but not deleting from database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Car id for delete spesific car",
+            "schema": {
+              "type": "string",
+              "nullable": true,
+              "minLength": 1,
+              "maxLength": 100
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create new user",
+        "description": "Create new user as member",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success creating new user"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Login user",
+        "description": "Login user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success login"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "put": {
+        "tags": ["Users"],
+        "summary": "Change user role to admin",
+        "description": "Change user role to admin by superadmin only",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "User id for changing role to admin",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Succes update role"
+          }
+        }
+      }
+    }
+  }
+}
