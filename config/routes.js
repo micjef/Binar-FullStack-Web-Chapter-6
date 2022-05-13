@@ -3,6 +3,9 @@ const res = require("express/lib/response");
 const controllers = require("../app/controllers");
 const apiRouter = express.Router();
 
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("../data/swagger.json");
+
 /**
  * TODO: Implement your own API
  *       implementations
@@ -59,6 +62,10 @@ apiRouter.delete(
 
 // read all car
 apiRouter.get("/api/v1/cars", controllers.api.v1.carController.list);
+
+// open api document
+apiRouter.use("/api-docs", swaggerUi.serve);
+apiRouter.get("/api-docs", swaggerUi.setup(swaggerDocument));
 
 /**
  * TODO: Delete this, this is just a demonstration of
