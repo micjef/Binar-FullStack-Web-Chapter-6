@@ -4,7 +4,7 @@
     "title": "Car Management API",
     "description": "OpenAPI for Car Management API",
     "version": "1",
-    "termsOfService": "https://micjef.my.id",
+    "termsOfService": "https://instagram.com/yunedaalfajr",
     "contact": {
       "name": "Michael Jeffry Setiawan",
       "email": "michaeljeffrysetiawan@gmail.com",
@@ -48,27 +48,6 @@
         "tags": ["Cars"],
         "summary": "Get All Cars",
         "description": "Get all car which is not deleted",
-        "parameters": [
-          {
-            "name": "name",
-            "in": "query",
-            "required": false,
-            "description": "coba",
-            "schema": {
-              "type": "string"
-            },
-            "examples": {
-              "name": {
-                "description": "Contoh query name",
-                "value": "yuneda"
-              },
-              "address": {
-                "description": "Contoh query address",
-                "value": "sidoarjo"
-              }
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "Success get all cars",
@@ -224,78 +203,14 @@
           }
         ],
         "tags": ["Cars"],
-        "summary": "Create New Car",
+        "summary": "Create New Car By",
         "description": "Create one car by admin or superadmin only",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "plate": {
-                    "type": "string"
-                  },
-                  "manufacture": {
-                    "type": "string"
-                  },
-                  "model": {
-                    "type": "string"
-                  },
-                  "image": {
-                    "type": "string"
-                  },
-                  "rentPerDay": {
-                    "type": "integer"
-                  },
-                  "capacity": {
-                    "type": "integer",
-                    "default": 2
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "transmission": {
-                    "type": "string"
-                  },
-                  "type": {
-                    "type": "string"
-                  },
-                  "year": {
-                    "type": "string"
-                  },
-                  "options": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "specs": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "availableAt": {
-                    "type": "string"
-                  },
-                  "isDeleted": {
-                    "type": "boolean",
-                    "default": false
-                  },
-                  "createdBy": {
-                    "type": "string",
-                    "default": ""
-                  },
-                  "updatedBy": {
-                    "type": "string",
-                    "default": ""
-                  },
-                  "deletedBy": {
-                    "type": "string",
-                    "default": ""
-                  }
-                }
+                "$ref": "#/components/schemas/CarSchemaReqBody"
               },
               "examples": {
                 "dummy_input": {
@@ -392,71 +307,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "plate": {
-                    "type": "string"
-                  },
-                  "manufacture": {
-                    "type": "string"
-                  },
-                  "model": {
-                    "type": "string"
-                  },
-                  "image": {
-                    "type": "string"
-                  },
-                  "rentPerDay": {
-                    "type": "integer"
-                  },
-                  "capacity": {
-                    "type": "integer",
-                    "default": 2
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "transmission": {
-                    "type": "string"
-                  },
-                  "type": {
-                    "type": "string"
-                  },
-                  "year": {
-                    "type": "string"
-                  },
-                  "options": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "specs": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "availableAt": {
-                    "type": "string"
-                  },
-                  "isDeleted": {
-                    "type": "boolean",
-                    "default": false
-                  },
-                  "createdBy": {
-                    "type": "string",
-                    "default": ""
-                  },
-                  "updatedBy": {
-                    "type": "string",
-                    "default": ""
-                  },
-                  "deletedBy": {
-                    "type": "string",
-                    "default": ""
-                  }
-                }
+                "$ref": "#/components/schemas/CarSchemaReqBody"
               },
               "examples": {
                 "dummy_input": {
@@ -609,6 +460,23 @@
           }
         }
       }
+    },
+    "/history": {
+      "get": {
+        "security": [
+          {
+            "CarAuth": []
+          }
+        ],
+        "tags": ["Cars"],
+        "summary": "Show only deleted cars",
+        "description": "Show only deleted cars by superadmin only",
+        "responses": {
+          "200": {
+            "description": "Succes show deleted car"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -625,7 +493,7 @@
         "name": "id",
         "in": "path",
         "required": true,
-        "description": "Car id for get spesific car",
+        "description": "Car id for spesific car",
         "schema": {
           "type": "string",
           "minLength": 1,
@@ -689,15 +557,15 @@
           },
           "createdBy": {
             "type": "string",
-            "default": ""
+            "default": null
           },
           "updatedBy": {
             "type": "string",
-            "default": ""
+            "default": null
           },
           "deletedBy": {
             "type": "string",
-            "default": ""
+            "default": null
           }
         }
       },

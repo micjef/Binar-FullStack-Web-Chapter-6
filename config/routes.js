@@ -61,8 +61,18 @@ apiRouter.delete(
   controllers.api.v1.carController.makeCarDeleted
 );
 
-// read all car
+// read all car which is not deleted
 apiRouter.get("/api/v1/cars", controllers.api.v1.carController.list);
+
+// read all deleted car by admin or superadmin
+apiRouter.get(
+  "/api/v1/history",
+  controllers.api.v1.userController.authorize,
+  middewares.checkCredential(["superadmin", "admin"]),
+  controllers.api.v1.carController.listDeleted({
+    where: { isDeleted: true },
+  })
+);
 
 // open api document
 apiRouter.use("/api-docs", swaggerUi.serve);

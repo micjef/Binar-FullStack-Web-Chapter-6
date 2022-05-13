@@ -25,6 +25,26 @@ module.exports = {
       });
   },
 
+  listDeleted(args) {
+    return async (req, res) => {
+      carService
+        .list(args)
+        .then(({ data, count }) => {
+          res.status(200).json({
+            status: "OK",
+            data: { cars: data },
+            meta: { total: count },
+          });
+        })
+        .catch((err) => {
+          res.status(400).json({
+            status: "FAIL",
+            message: err.message,
+          });
+        });
+    };
+  },
+
   create(req, res) {
     console.log(req.body);
     req.body.createdBy = req.user.username;
@@ -80,7 +100,10 @@ module.exports = {
 
   makeCarDeleted(req, res) {
     carService
-      .isCarDeleted(req.params.id, { isDeleted: true, deletedBy: req.user.username })
+      .isCarDeleted(req.params.id, {
+        isDeleted: true,
+        deletedBy: req.user.username,
+      })
       .then((car) => {
         res.status(200).json({
           deletedBy: req.user.username,

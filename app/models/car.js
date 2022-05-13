@@ -32,15 +32,15 @@ module.exports = (sequelize, DataTypes) => {
       },
       createdBy: {
         type: DataTypes.STRING,
-        defaultValue: "",
+        defaultValue: null,
       },
       updatedBy: {
         type: DataTypes.STRING,
-        defaultValue: "",
+        defaultValue: null,
       },
       deletedBy: {
         type: DataTypes.STRING,
-        defaultValue: "",
+        defaultValue: null,
       },
     },
     {
