@@ -131,12 +131,12 @@ module.exports = {
 
   async authorize(req, res, next) {
     console.log("req.headers :");
-    console.log(req.headers);
+    console.log(req.headers.authorization);
     try {
       const bearerToken = req.headers.authorization;
-      // const token2 = bearerToken.split("Bearer ")[1];
+      const token = bearerToken.split("Bearer ")[1];
       const tokenPayload = jwt.verify(
-        bearerToken,
+        token,
         process.env.JWT_SIGNATURE_KEY || "Rahasia"
       );
       console.log("token payload :");
@@ -187,6 +187,7 @@ module.exports = {
   },
 
   update(req, res) {
+    req.body.role = "admin";
     userService
       .update(req.params.id, req.body)
       .then((user) => {

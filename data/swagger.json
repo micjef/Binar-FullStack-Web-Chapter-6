@@ -218,20 +218,14 @@
         }
       },
       "post": {
+        "security": [
+          {
+            "CarAuth": []
+          }
+        ],
         "tags": ["Cars"],
         "summary": "Create New Car",
         "description": "Create one car by admin or superadmin only",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "required": false,
-            "description": "get token from user who logged in",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -364,39 +358,33 @@
     },
     "/cars/{id}": {
       "get": {
+        "security": [
+          {
+            "CarAuth": []
+          }
+        ],
         "tags": ["Cars"],
         "summary": "Get Spesific Car",
         "description": "Update car by admin or superadmin only",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "Car id for get spesific car",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 100
-            }
+            "$ref": "#/components/parameters/id"
           }
         ],
         "responses": {}
       },
       "put": {
+        "security": [
+          {
+            "CarAuth": []
+          }
+        ],
         "tags": ["Cars"],
         "summary": "Update Existing Car",
         "description": "Update car by admin or superadmin only",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "Car id for update spesific car",
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 100
-            }
+            "$ref": "#/components/parameters/id"
           }
         ],
         "requestBody": {
@@ -513,21 +501,17 @@
         "responses": {}
       },
       "delete": {
+        "security": [
+          {
+            "CarAuth": []
+          }
+        ],
         "tags": ["Cars"],
         "summary": "Delete Existing Car",
         "description": "make isDeleted atribute true, but not deleting from database",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "Car id for delete spesific car",
-            "schema": {
-              "type": "string",
-              "nullable": true,
-              "minLength": 1,
-              "maxLength": 100
-            }
+            "$ref": "#/components/parameters/id"
           }
         ],
         "responses": {}
@@ -598,6 +582,11 @@
     },
     "/users/{id}": {
       "put": {
+        "security": [
+          {
+            "CarAuth": []
+          }
+        ],
         "tags": ["Users"],
         "summary": "Change user role to admin",
         "description": "Change user role to admin by superadmin only",
@@ -617,6 +606,112 @@
         "responses": {
           "200": {
             "description": "Succes update role"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "CarAuth": {
+        "description": "Authentication for Car Management API",
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "id": {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "description": "Car id for get spesific car",
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      }
+    },
+    "schemas": {
+      "CarSchemaReqBody": {
+        "type": "object",
+        "properties": {
+          "plate": {
+            "type": "string"
+          },
+          "manufacture": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "rentPerDay": {
+            "type": "integer"
+          },
+          "capacity": {
+            "type": "integer",
+            "default": 2
+          },
+          "description": {
+            "type": "string"
+          },
+          "transmission": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "year": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "specs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "availableAt": {
+            "type": "string"
+          },
+          "isDeleted": {
+            "type": "boolean",
+            "default": false
+          },
+          "createdBy": {
+            "type": "string",
+            "default": ""
+          },
+          "updatedBy": {
+            "type": "string",
+            "default": ""
+          },
+          "deletedBy": {
+            "type": "string",
+            "default": ""
+          }
+        }
+      },
+      "ArrayCar": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "plate": {
+              "type": "string"
+            }
           }
         }
       }
