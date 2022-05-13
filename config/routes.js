@@ -1,6 +1,7 @@
 const express = require("express");
 const res = require("express/lib/response");
 const controllers = require("../app/controllers");
+const middewares = require("../app/middlewares");
 const apiRouter = express.Router();
 
 const swaggerUi = require("swagger-ui-express");
@@ -18,7 +19,7 @@ apiRouter.post("/api/v1/login", controllers.api.v1.userController.login);
 apiRouter.put(
   "/api/v1/users/:id",
   controllers.api.v1.userController.authorize,
-  controllers.api.v1.userController.isSuperAdmin,
+  middewares.checkCredential(["superadmin"]),
   controllers.api.v1.userController.update
 );
 
@@ -32,7 +33,7 @@ apiRouter.get("/api/v1/whoami", controllers.api.v1.userController.authorize, con
 apiRouter.post(
   "/api/v1/cars",
   controllers.api.v1.userController.authorize,
-  controllers.api.v1.userController.isAdminOrSuperAdmin,
+  middewares.checkCredential(["superadmin", "admin"]),
   controllers.api.v1.carController.create
 );
 
@@ -40,7 +41,7 @@ apiRouter.post(
 apiRouter.get(
   "/api/v1/cars/:id",
   controllers.api.v1.userController.authorize,
-  controllers.api.v1.userController.isAdminOrSuperAdmin,
+  middewares.checkCredential(["superadmin", "admin"]),
   controllers.api.v1.carController.show
 );
 
@@ -48,7 +49,7 @@ apiRouter.get(
 apiRouter.put(
   "/api/v1/cars/:id",
   controllers.api.v1.userController.authorize,
-  controllers.api.v1.userController.isAdminOrSuperAdmin,
+  middewares.checkCredential(["superadmin", "admin"]),
   controllers.api.v1.carController.update
 );
 
@@ -56,7 +57,7 @@ apiRouter.put(
 apiRouter.delete(
   "/api/v1/cars/:id",
   controllers.api.v1.userController.authorize,
-  controllers.api.v1.userController.isAdminOrSuperAdmin,
+  middewares.checkCredential(["superadmin", "admin"]),
   controllers.api.v1.carController.makeCarDeleted
 );
 
