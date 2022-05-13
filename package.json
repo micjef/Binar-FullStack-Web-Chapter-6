@@ -1,11 +1,11 @@
 {
-  "name": "binar-challange-chpater-6",
+  "name": "binar-challenge-chapter-6",
   "version": "1.0.0",
   "main": "app/index.js",
   "license": "MIT",
   "scripts": {
     "start": "bin/www",
-    "develop": "nodemon -q bin/www",
+    "dev": "nodemon -q bin/www",
     "db:create": "./node_modules/.bin/sequelize-cli db:create",
     "db:drop": "./node_modules/.bin/sequelize-cli db:drop",
     "db:migrate": "./node_modules/.bin/sequelize-cli db:migrate",
@@ -26,5 +26,6 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+  "author": "micjef <michaeljeffrysetiawan@gmail.com>"
 }

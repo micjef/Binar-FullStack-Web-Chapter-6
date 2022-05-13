@@ -1,7 +1,7 @@
 const express = require("express");
 const res = require("express/lib/response");
 const controllers = require("../app/controllers");
-const middewares = require("../app/middlewares");
+const middewares = require("../app/middleware");
 const apiRouter = express.Router();
 
 const swaggerUi = require("swagger-ui-express");
